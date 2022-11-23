@@ -1,9 +1,23 @@
-import react from "react";
+import React from "react";
 import './TodoSearch.css';
 
-function TodoSearch(){
+function TodoSearch( {searchValue, setSearchValue} ){
+    
+
+    const onSearchValueChange = (event) =>{
+        setSearchValue(event.target.value);
+
+    }
     return(
-        <input className="TodoSearch" placeholder="Search..."/>
+        <div style={{textAlign:"center"}}>
+        <input 
+            className="TodoSearch" 
+            placeholder="Search..."
+            value = {searchValue}
+            onChange={onSearchValueChange}
+
+        />
+        </div>
     );
 }
 
