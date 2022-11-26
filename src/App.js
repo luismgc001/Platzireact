@@ -11,7 +11,18 @@ import { AppUI } from './AppUI';
 
 // Recibimos como parámetros el nombre y el estado inicial de nuestro item.
 function useLocalStorage(itemName, initialValue) {
-  // Guardamos nuestro item en una constante
+  const [error, setError] = React.useState(false);
+  const [loading, setLoading] = React.useState(true);
+
+
+  // ¡Podemos utilizar otros hooks!
+  const [item, setItem] = React.useState(initialValue);
+
+  React.useEffect(() => {
+    setTimeout(() => {
+      try{
+        
+      // Guardamos nuestro item en una constante
   const localStorageItem = localStorage.getItem(itemName);
   let parsedItem;
   
@@ -23,28 +34,57 @@ function useLocalStorage(itemName, initialValue) {
   } else {
     parsedItem = JSON.parse(localStorageItem);
   }
+  setItem(parsedItem);
+  setLoading(false);
+
+    
+      }catch(error){
+        setError(error)
+
+      }
+
+
+
+
+    },1000);
+  });
+
   
-  // ¡Podemos utilizar otros hooks!
-  const [item, setItem] = React.useState(parsedItem);
+  
+  
 
   // Actualizamos la función para guardar nuestro item con las nuevas variables y parámetros
   const saveItem = (newItem) => {
+    try {
+      
     const stringifiedItem = JSON.stringify(newItem);
     localStorage.setItem(itemName, stringifiedItem);
     setItem(newItem);
+    }catch(error){
+      setError(error)
+
+    }
   };
 
   // Regresamos los datos que necesitamos
-  return [
+  return {
     item,
     saveItem,
-  ];
+    loading,
+    error,
+  };
 }
 
 
 function App() {
   // Desestructuramos los datos que retornamos de nuestro custom hook, y le pasamos los argumentos que necesitamos (nombre y estado inicial)  
-  const[todos, saveTodos] = useLocalStorage("TODOS_V1", []); 
+  const {
+    item: todos,
+    saveItem: saveTodos,
+    loading,
+    error,
+
+  } = useLocalStorage("TODOS_V1", []); 
   const [searchValue, setSearchValue] = React.useState("");
 
   
@@ -96,10 +136,17 @@ function App() {
 
   }
 
+  // React.useEffect(() => {
+  //   console.log("use Effect")
+  // }, [totalTodos]);
+
 
   return (
     
     <AppUI
+
+    loading={loading}
+    error= {error}
     totalTodos={totalTodos}
     completedTodos={completedTodos}
     searchValue={searchValue}
