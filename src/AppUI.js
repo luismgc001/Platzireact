@@ -8,21 +8,22 @@ import { CreateTodoButton } from './CreateTodoButton';
 import { getValue } from "@testing-library/user-event/dist/utils";
 
 function AppUI(){
+
+  const {
+    error, 
+    loading,
+    searchedTodos,
+    completeTodos,
+    deleteTodos,
+    }= React.useContext(TodoContext)
+
     return(
         
     <React.Fragment>
     <TodoCounter />
     <TodoSearch />      
 
-    <TodoContext.Consumer>
-      {({
-        error, 
-        loading,
-        searchedTodos,
-        completeTodos,
-        deleteTodos,
-        }) => (
-          <div>
+    <div>
         <TodoList>
           
           {error && <p>Desesperate, hubo un error.......</p>}
@@ -42,8 +43,7 @@ function AppUI(){
         ))}
       </TodoList>
       </div>
-      )}
-    </TodoContext.Consumer>
+      
 
     <CreateTodoButton />
   </React.Fragment>
