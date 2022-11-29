@@ -7,6 +7,7 @@ import { TodoItem } from './TodoItem';
 import { CreateTodoButton } from './CreateTodoButton';
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { Modal } from "./Modal";
+import { TodoForm } from "./TodoForm/index.js";
 
 
 function AppUI(){
@@ -20,7 +21,7 @@ function AppUI(){
     openModal,
     setOpenModal,
     }= React.useContext(TodoContext)
-
+ 
     return(
         
     <React.Fragment>
@@ -49,8 +50,8 @@ function AppUI(){
       
       {!!openModal && (
         <Modal>
-        <p>TELEPORRRRT</p>
-      </Modal>
+          <TodoForm/>
+        </Modal>
       )}
 
       </div>
