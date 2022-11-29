@@ -8,6 +8,9 @@ import { CreateTodoButton } from './CreateTodoButton';
 import { getValue } from "@testing-library/user-event/dist/utils";
 import { Modal } from "./Modal";
 import { TodoForm } from "./TodoForm/index.js";
+import { TodosError } from "./TodosError";
+import { EmptyTodos } from "./EmptyTodos";
+import { TodosLoading } from "./TodosLoading";
 
 
 function AppUI(){
@@ -31,9 +34,9 @@ function AppUI(){
     <div>
         <TodoList>
           
-          {error && <p>Desesperate, hubo un error.......</p>}
-          {loading && <p>Estamos cargando, no desesperes.....</p>}
-          {(!loading && !searchedTodos.length) && <p>Crea tu primer todo</p>}
+          {error && <TodosError error={error} />}
+          {loading && <TodosLoading />}
+          {(!loading && !searchedTodos.length) && <EmptyTodos/>}
           
           
 
