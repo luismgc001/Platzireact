@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Platzireact/static/css/main.f92dead3.css",
+    "main.js": "/Platzireact/static/js/main.5cdac50c.js",
+    "index.html": "/Platzireact/index.html",
+    "static/media/delete.svg": "/Platzireact/static/media/delete.8ae5cf4e863b829ea63c624697cf46a4.svg",
+    "static/media/check.svg": "/Platzireact/static/media/check.710319f6645c5a15640253a473cea188.svg",
+    "main.f92dead3.css.map": "/Platzireact/static/css/main.f92dead3.css.map",
+    "main.5cdac50c.js.map": "/Platzireact/static/js/main.5cdac50c.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.f92dead3.css",
+    "static/js/main.5cdac50c.js"
+  ]
+}
